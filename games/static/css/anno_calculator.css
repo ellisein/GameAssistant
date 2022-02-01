@@ -1,0 +1,61 @@
+.card-header {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.anno-population {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.anno-population-icon {
+	width: 72px;
+	height: 72px;
+}
+
+.anno-population-name {
+ 	text-align: center;
+ 	font-size: 1.2rem;
+}
+
+.anno-population input {
+	width: 72px;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.anno-population input,
+.anno-population input:focus {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.anno-product-container {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.anno-product {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.anno-product-icon {
+	width: 60px;
+	height: 60px;
+}
+
+.anno-product-name {
+ 	text-align: center;
+ 	font-size: 1.2rem;
+}

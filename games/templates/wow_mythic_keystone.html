@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{% static 'css/wow_mythic_keystone.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid m-0">
+	<div class="row">
+		<span>{{page_name}}</span>
+	</div>
+
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-header">
+					<span id="card-title">금주의 신화 쐐기돌 어픽스</span>
+					<br>
+					<span id="card-subtitle" class="text-muted">{{period_start}} ~ {{period_end}}</span>
+				</div>
+				<div class="card-body">
+					{% for affix in affixes %}
+					<div class="affix-preview-container">
+						<img class="affix-thumbnail" src="{{affix.media}}">
+						<div>
+							<span class="affix-name">{{affix.name}}</span>
+							<br>
+							<span class="affix-description">{{affix.description}}</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="card-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

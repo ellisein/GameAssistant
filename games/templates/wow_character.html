@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{% static 'css/wow_character.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid m-0">
+	<div class="row">
+		<span>{{page_name}}</span>
+	</div>
+
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-md-6">
+			<form method="GET" class="form">
+				<i class="bi bi-search"></i>
+				<input type="text" class="form-control form-input" placeholder="캐릭터 이름" name="name" autocomplete="off" autofocus>
+				<select class="form-select" name="realm">
+					{% for realm in realms %}
+					<option value="{{realm.EN}}">{{realm.KR}}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="btn btn-dark">검색</button>
+			</div>
+		</div>
+	</div>
+
+	{% if load == "SUCCESS" %}
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-header d-flex">
+					<div class="character-thumbnail-container">
+						<img src="{{thumbnail}}">
+					</div>
+					<div class="character-name-container">
+						<span id="character-name" style="color:{{class_color}}">{{name}}</span>
+						<span id="character-realm" class="text-muted">{{realm}}</span>
+						<br>
+						<span id="character-guild"><{{guild}}></span>
+						<br>
+						<span id="character-race-class" style="color:{{class_color}}">{{level}}레벨 {{race}} {{class}}</span>
+						<span id="character-achievement-points" class="text-muted">업적 점수 {{achievement_points}}</span>
+					</div>
+				</div>
+				<div class="card-body">
+					<small>마지막 로그인 날짜: {{last_login_date}}</small>
+					<div class="character-detail-container">
+						<span><b>착용 중인 아이템</b></span>
+						<div>
+						{% for equipment in equipments %}
+							{% if equipment %}
+							<a href="https://www.wowhead.com/item={{equipment.id}}" target="_blank">
+								<img class="game-icon" src="{{equipment.media}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{equipment.name}}">
+							</a>
+							{% else %}
+							<img class="game-icon" src="{% static 'images/x.png' %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="아이템 미착용">
+							{% endif %}
+						{% endfor %}
+						</div>
+						<span>아이템 레벨: 착용 <b>{{equipped_item_level}}</b> / 최대 <b>{{average_item_level}}</b></span>
+					</div>
+					<div class="character-detail-container">
+						<span><b>현재 특성</b> ({{active_spec}} {{class}})</span>
+						<div>
+						{% for talent in talents %}
+							<a href="https://www.wowhead.com/spell={{talent.id}}" target="_blank">
+								<img class="game-icon" src="{{talent.media}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{talent.name}}">
+							</a>
+						{% endfor %}
+						</div>
+					</div>
+					<div class="character-detail-container">
+						<span><b>신화 쐐기돌</b></span>
+						{% if mythic_score %}
+							<span>현재 시즌 <b id="character-mythic-score" style="color:{{mythic_color}}">{{mythic_score}}</b>점</span>
+							<span>전체 캐릭터 세계 <b>{{mythic_ranks.overall.world}}</b>위 / 국내 <b>{{mythic_ranks.overall.region}}</b>위 / 서버 <b>{{mythic_ranks.overall.realm}}</b>위<br>{{class}} 세계 <b>{{mythic_ranks.class.world}}</b>위 / 국내 <b>{{mythic_ranks.class.region}}</b>위 / 서버 <b>{{mythic_ranks.class.realm}}</b>위</span>
+						{% else %}
+							<span>현재 시즌 신화 쐐기돌 기록 없음</span>
+						{% endif %}
+					</div>
+				</div>
+				<div class="card-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{% elif load == "FAIL" %}
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-body">
+					<span class="msg-fail">캐릭터를 찾을 수 없습니다.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

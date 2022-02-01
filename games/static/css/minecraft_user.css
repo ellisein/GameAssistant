@@ -1,0 +1,29 @@
+.card-header {
+	display: flex;
+	flex-direction: column;
+}
+
+#user-name {
+	font-size: 2.4rem;
+}
+
+#user-uuid {
+	font-size: 1.2rem;
+}
+
+#name-history {
+	font-size: 1.2rem;
+}
+
+.card-body {
+	display: flex;
+	gap: 16px;
+}
+
+.card-body img {
+	height: 240px;
+}
+
+.msg-fail {
+	font-size: 1.3rem;
+}

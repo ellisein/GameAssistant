@@ -1,0 +1,135 @@
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+
+html {
+	font-size: 12px;
+}
+
+body {
+	font-family: 'Nanum Barun Gothic', sans-serif;
+	background-color: #27292d;
+	color: #ffffff;
+}
+
+a,
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+.form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 20%);
+}
+
+.bd-layout {
+	display: flex;
+	align-items: stretch;
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar {
+	position: sticky;
+	top: 0;
+	min-width: 250px;
+	max-width: 250px;
+	height: 100vh;
+	padding: 16px;
+	border-right: 1px solid #5c5e61;
+}
+
+.background-dark {
+	background-color: #27292d;
+}
+
+.sidebar-header {
+	font-size: 1.6rem;
+}
+
+.sidebar-menu,
+.sidebar-menu:hover,
+.sidebar-menu:focus {
+	color: #ffffff;
+	font-size: 1.4rem;
+}
+
+.sidebar-menu,
+.sidebar-menu:focus {
+	background: inherit;
+	border: none;
+	border-radius: 7px !important;
+}
+
+.sidebar-menu:hover {
+	background-color: #383a3e;
+}
+
+.sidebar-collapse {
+	padding-left: 10px;
+}
+
+.sidebar-collapse > a {
+	background: inherit;
+	color: #a7a9ad;
+	font-size: 1.2rem;
+	border: none;
+	border-radius: 7px !important;
+}
+
+.sidebar-collapse > a:hover {
+	background-color: #383a3e;
+	color: #ffffff;
+}
+
+#content {
+	padding: 16px;
+	width: 100%;
+}
+
+.ct-layout {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+.form {
+	position: relative;
+	font-size: 1.5rem;
+}
+
+.form .bi-search {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	color: #9ca3af;
+}
+
+.form .form-select {
+	position: absolute;
+	width: 128px;
+	top: 8px;
+	right: 60px;
+}
+
+.form button[type='submit'] {
+	position: absolute;
+	top: 8px;
+	right: 12px;
+}
+
+.form-input {
+	height: 45px;
+	text-indent: 33px;
+	border-radius: 10px;
+	font-size: inherit;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+img.disabled {
+	filter: gray;
+	filter: grayscale(1);
+	-webkit-filter: grayscale(1);
+}

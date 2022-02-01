@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{% static 'css/anno_calculator.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid m-0">
+	<div class="row">
+		<span>{{page_name}}</span>
+	</div>
+
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-header">
+					<div class="anno-population">
+						<img class="anno-population-icon" src="{% static 'images/anno_farmer.png' %}">
+						<span class="anno-population-name">농부</span>
+						<input id="farmer-number" class="form-control" type="number" placeholder="0">
+					</div>
+					<div class="anno-population">
+						<img class="anno-population-icon" src="{% static 'images/anno_worker.png' %}">
+						<span class="anno-population-name">노동자</span>
+						<input id="worker-number" class="form-control" type="number" placeholder="0">
+					</div>
+					<div class="anno-population">
+						<img class="anno-population-icon" src="{% static 'images/anno_artisan.png' %}">
+						<span class="anno-population-name">직공</span>
+						<input id="artisan-number" class="form-control" type="number" placeholder="0">
+					</div>
+					<div class="anno-population">
+						<img class="anno-population-icon" src="{% static 'images/anno_engineer.png' %}">
+						<span class="anno-population-name">기술자</span>
+						<input id="engineer-number" class="form-control" type="number" placeholder="0">
+					</div>
+					<div class="anno-population">
+						<img class="anno-population-icon" src="{% static 'images/anno_investor.png' %}">
+						<span class="anno-population-name">투자가</span>
+						<input id="investor-number" class="form-control" type="number" placeholder="0">
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="anno-product-container">
+						<div class="anno-product" id="anno-product-fish">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_fish.png' %}">
+							<span class="anno-product-name text-muted">생선<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-workclothes">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_workclothes.png' %}">
+							<span class="anno-product-name text-muted">작업복<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-schnapps">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_schnapps.png' %}">
+							<span class="anno-product-name text-muted">슈냅스<span class="anno-product-count"></span></span>
+						</div>
+					</div>
+					<div class="anno-product-container">
+						<div class="anno-product" id="anno-product-sausages">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_sausages.png' %}">
+							<span class="anno-product-name text-muted">소시지<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-bread">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_bread.png' %}">
+							<span class="anno-product-name text-muted">빵<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-soap">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_soap.png' %}">
+							<span class="anno-product-name text-muted">비누<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-beer">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_beer.png' %}">
+							<span class="anno-product-name text-muted">맥주<span class="anno-product-count"></span></span>
+						</div>
+					</div>
+					<div class="anno-product-container">
+						<div class="anno-product" id="anno-product-cannedfood">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_cannedfood.png' %}">
+							<span class="anno-product-name text-muted">통조림<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-sewingmachines">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_sewingmachines.png' %}">
+							<span class="anno-product-name text-muted">재봉틀<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-furcoats">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_furcoats.png' %}">
+							<span class="anno-product-name text-muted">모피코트<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-rum">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_rum.png' %}">
+							<span class="anno-product-name text-muted">럼주<span class="anno-product-count"></span></span>
+						</div>
+					</div>
+					<div class="anno-product-container">
+						<div class="anno-product" id="anno-product-glasses">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_glasses.png' %}">
+							<span class="anno-product-name text-muted">안경<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-coffee">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_coffee.png' %}">
+							<span class="anno-product-name text-muted">커피<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-lightbulbs">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_lightbulbs.png' %}">
+							<span class="anno-product-name text-muted">전구<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-highwheelers">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_highwheelers.png' %}">
+							<span class="anno-product-name text-muted">자전거<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-pocketwatches">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_pocketwatches.png' %}">
+							<span class="anno-product-name text-muted">회중시계<span class="anno-product-count"></span></span>
+						</div>
+					</div>
+					<div class="anno-product-container">
+						<div class="anno-product" id="anno-product-champagne">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_champagne.png' %}">
+							<span class="anno-product-name text-muted">샴페인<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-cigars">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_cigars.png' %}">
+							<span class="anno-product-name text-muted">시가<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-chocolate">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_chocolate.png' %}">
+							<span class="anno-product-name text-muted">초콜릿<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-jewelry">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_jewelry.png' %}">
+							<span class="anno-product-name text-muted">보석<span class="anno-product-count"></span></span>
+						</div>
+						<div class="anno-product" id="anno-product-gramophones">
+							<img class="anno-product-icon disabled" src="{% static 'images/anno_gramophones.png' %}">
+							<span class="anno-product-name text-muted">축음기<span class="anno-product-count"></span></span>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="{% static 'js/anno_calculator.js' %}"></script>
+
+{% endblock %}

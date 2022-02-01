@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{% static 'css/minecraft_user.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid m-0">
+	<div class="row">
+		<span>{{page_name}}</span>
+	</div>
+
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-md-6">
+			<form method="GET" class="form">
+				<i class="bi bi-search"></i>
+				<input type="text" class="form-control form-input" placeholder="유저 이름" name="name" autocomplete="off" autofocus>
+				<button type="submit" class="btn btn-dark">검색</button>
+			</div>
+		</div>
+	</div>
+
+	{% if load == "SUCCESS" %}
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-header">
+					<span id="user-name">{{name}}</span>
+					<span id="user-uuid" class="text-muted">UUID: {{uuid}}</span>
+					{% if name_history %}
+					<span id="name-history">이전 닉네임: {{name_history|join}}</span>
+					{% endif %}
+				</div>
+				<div class="card-body">
+					<img src="{{skin}}">
+					<img src="{{texture}}">
+				</div>
+				<div class="card-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{% elif load == "FAIL" %}
+	<div class="row d-flex justify-content-center align-items-center ct-layout">
+		<div class="col-lg-8 col-md-10 col-sm-12">
+			<div class="card bg-dark character-card">
+				<div class="card-body">
+					<span class="msg-fail">유저를 찾을 수 없습니다.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

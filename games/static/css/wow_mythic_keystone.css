@@ -1,0 +1,34 @@
+.card-header #card-title {
+	font-size: 1.7rem;
+}
+
+.card-header #card-subtitle {
+	font-size: 1.3rem;
+}
+
+.card-body {
+	display: flex;
+	flex-direction: column;
+	color: #bdbdbd;
+	gap: 12px;
+}
+
+.affix-preview-container {
+	display: flex;
+	gap: 12px;
+	padding: 8px 12px;
+	background: #27292d;
+}
+
+.affix-thumbnail {
+	width: 60px;
+	height: 60px;
+}
+
+.affix-name {
+	font-size: 1.5rem;
+}
+
+.affix-description {
+	font-size: 1.0rem;
+}
