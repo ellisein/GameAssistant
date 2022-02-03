@@ -15,33 +15,21 @@ from .models import Minecraft3dTexture
 
 
 class static_wow(metaclass=Singleton):
-	_REALMS = dict()
+	_REALMS = list()
 	_MK_CUR_ENDTIME = None
 	_MK_CUR_CONTEXT = None
 
 	@classmethod
 	def load_realm(cls):
+		cls._REALMS.clear()
 		realm = asyncio.run(API_blizzard.get_realm())
 		if realm:
 			for r in realm['realms']:
-				if not r['name'] in cls._REALMS:
-					cls._REALMS[r['name']] = r['slug']
+				cls._REALMS.append({'KR': r['name'], 'EN': r['slug']})
 
 	@classmethod
-	def get_realm_slug(cls, name):
-		if name in cls._REALMS:
-			return cls._REALMS[name]
-		return None
-
-	@classmethod
-	def get_realms(cls, recent=None):
-		ret = list()
-		for k, v in cls._REALMS.items():
-			if v == recent:
-				ret = [{'KR': k, 'EN': v}, *ret]
-			else:
-				ret.append({'KR': k, 'EN': v})
-		return ret
+	def get_realms(cls):
+		return cls._REALMS
 
 	@classmethod
 	def get_mythic_keystone_affixes(cls):

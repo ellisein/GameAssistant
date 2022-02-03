@@ -12,7 +12,7 @@
 
 <div class="container-fluid m-0">
 	<div class="row">
-		<span>{{page_name}}</span>
+		<span>월드 오브 워크래프트 > 캐릭터 검색</span>
 	</div>
 
 	<div class="row d-flex justify-content-center align-items-center ct-layout">
@@ -22,7 +22,11 @@
 				<input type="text" class="form-control form-input" placeholder="캐릭터 이름" name="name" autocomplete="off" autofocus>
 				<select class="form-select" name="realm">
 					{% for realm in realms %}
-					<option value="{{realm.EN}}">{{realm.KR}}</option>
+						{% if realm.EN == recent_realm %}
+						<option value="{{realm.EN}}" selected>{{realm.KR}}</option>
+						{% else %}
+						<option value="{{realm.EN}}">{{realm.KR}}</option>
+						{% endif %}
 					{% endfor %}
 				</select>
 				<button type="submit" class="btn btn-dark">검색</button>

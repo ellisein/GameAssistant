@@ -35,7 +35,8 @@ def wow_character(request):
 
 				context = {
 					'load': 'SUCCESS',
-					'realms': static_wow.get_realms(character_realm),
+					'realms': static_wow.get_realms(),
+					'recent_realm': request.COOKIES['recent_realm'] if 'recent_realm' in request.COOKIES else None,
 					'thumbnail': utils.get_value(c_media['assets'], 'key', 'avatar', 'value'),
 					'name': c_profile['name'],
 					'realm': c_profile['realm']['name'],
@@ -61,15 +62,22 @@ def wow_character(request):
 			else:
 				context = {
 					'load': 'FAIL',
-					'realms': static_wow.get_realms(character_realm),
+					'realms': static_wow.get_realms(),
+					'recent_realm': request.COOKIES['recent_realm'] if 'recent_realm' in request.COOKIES else None,
 				}
+
+			res = render(request, 'wow_character.html', context)
+			res.set_cookie('recent_realm', character_realm)
+			return res
+
 		else:
 			context = {
 				'realms': static_wow.get_realms(),
+				'recent_realm': request.COOKIES['recent_realm'] if 'recent_realm' in request.COOKIES else None,
 			}
 
-		context['page_name'] = '월드 오브 워크래프트 > 캐릭터 검색'
-		return render(request, 'wow_character.html', context)
+		res = render(request, 'wow_character.html', context)
+		return res
 
 	else:
 		return HttpResponse(status=405)
@@ -89,14 +97,10 @@ def wow_mythic_keystone(request):
 		'affixes': static_wow.get_affix_detail(mk_current_affix['affix_details']),
 	}
 	static_wow.set_mythic_keystone_affixes(mk_period['end_timestamp']/1000, context)
-
-	context['page_name'] = '월드 오브 워크래프트 > 신화 쐐기돌'
 	return render(request, 'wow_mythic_keystone.html', context)
 
 def anno_calculator(request):
-	context = {}
-	context['page_name'] = 'ANNO 1800 > 생산시설 계산기'
-	return render(request, 'anno_calculator.html', context)
+	return render(request, 'anno_calculator.html', {})
 
 def minecraft_user(request):
 	if request.method == 'GET':
@@ -133,7 +137,6 @@ def minecraft_user(request):
 					'load': 'FAIL',
 				}
 
-		context['page_name'] = '마인크래프트 > 유저 스킨 검색'
 		return render(request, 'minecraft_user.html', context)
 
 	else:
