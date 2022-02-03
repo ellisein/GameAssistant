@@ -24,21 +24,27 @@
 pip install -u django asyncio aiohttp Pillow MinePI
 ```
 
-3. 월드 오브 워크래프트 API 기능 사용을 위해 [블리자드 API 홈페이지](https://develop.battle.net/access/clients)에서 사이트 내 문서에 따라 API 키를 획득합니다. 발급받은 API 키를 환경변수로 설정합니다.
+3. 새 Django Secret Key를 발급 받아 환경변수로 설정합니다.
 
 ```
-setx BLIZZARD_API_CLIENT_ID "발급받은 CLIENT ID"
-setx BLIZZARD_API_CLIENT_SECRET "발급받은 CLIENT SECRET"
+setx DJANGO_SECRET_KEY_GAME_ASSISTANT "(SECRET KEY)"
 ```
 
-4. 프로젝트 디렉터리에서 다음 명령어를 사용하여 정의된 Django 모델을 DB에 적용합니다.
+4. 월드 오브 워크래프트 API 기능 사용을 위해 [블리자드 API 홈페이지](https://develop.battle.net/access/clients)에서 사이트 내 문서에 따라 API 키를 획득합니다. 발급받은 API 키를 환경변수로 설정합니다.
+
+```
+setx BLIZZARD_API_CLIENT_ID "(CLIENT ID)"
+setx BLIZZARD_API_CLIENT_SECRET "(CLIENT SECRET)"
+```
+
+5. 프로젝트 디렉터리에서 다음 명령어를 사용하여 정의된 Django 모델을 DB에 적용합니다.
 
 ```
 python manage.py makemigrations games
 python manage.py migrate
 ```
 
-5. 다음 명령어로 코드를 실행합니다.
+6. 다음 명령어로 코드를 실행합니다.
 
 ```
 python manage.py runserver 0.0.0.0:80
